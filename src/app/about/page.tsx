@@ -133,27 +133,25 @@ export default function AboutPage() {
             </div>
 
             {/* Timeline */}
-            <div className="relative pl-8">
+            <div className="relative pl-10">
               {/* Vertical Line */}
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
+              <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-primary/30" />
 
               <div className="space-y-8">
                 {timelineItems.map((item, index) => (
-                  <div key={index} className="relative">
+                  <div key={index} className="relative flex items-center gap-4">
                     {/* Timeline Dot */}
-                    <div className="absolute -left-8 top-0 w-4 h-4 rounded-full bg-background border-2 border-primary flex items-center justify-center">
+                    <div className="absolute -left-10 w-4 h-4 rounded-full bg-background border-2 border-primary flex items-center justify-center">
                       <div className="w-2 h-2 rounded-full bg-primary" />
                     </div>
 
                     {/* Content */}
-                    <div className="flex items-start gap-3">
-                      <item.icon className="h-5 w-5 text-muted-foreground mt-0.5 shrink-0" />
-                      <div>
-                        <h3 className="font-medium text-foreground">
-                          {item.title}
-                        </h3>
-                        <p className="text-primary font-semibold">{item.year}</p>
-                      </div>
+                    <item.icon className="h-5 w-5 text-muted-foreground shrink-0" />
+                    <div>
+                      <h3 className="font-medium text-foreground leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-primary font-semibold">{item.year}</p>
                     </div>
                   </div>
                 ))}
