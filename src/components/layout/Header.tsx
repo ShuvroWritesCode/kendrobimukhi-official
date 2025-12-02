@@ -58,24 +58,45 @@ export function Header() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <nav className="flex flex-col space-y-4 mt-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-medium text-foreground/80 transition-colors hover:text-primary"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Button asChild className="mt-4">
-                <Link href="/donate" onClick={() => setIsOpen(false)}>
-                  Donate
-                </Link>
-              </Button>
-            </nav>
+          <SheetContent side="right" className="w-[280px] p-0">
+            <div className="flex flex-col h-full">
+              {/* Header with logo */}
+              <div className="flex items-center gap-3 p-6 border-b">
+                <Image
+                  src="/official-logo.jpg"
+                  alt="Kendrobimukhi Logo"
+                  width={36}
+                  height={36}
+                  className="rounded-lg"
+                />
+                <span className="text-lg font-semibold text-foreground">
+                  Kendrobimukhi
+                </span>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col flex-1 py-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="px-6 py-3 text-base font-medium text-foreground/80 transition-colors hover:text-primary hover:bg-muted"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
+              {/* Donate Button */}
+              <div className="p-6 border-t">
+                <Button asChild className="w-full">
+                  <Link href="/donate" onClick={() => setIsOpen(false)}>
+                    Donate
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
