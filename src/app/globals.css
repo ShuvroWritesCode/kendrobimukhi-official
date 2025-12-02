@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-outfit);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Kendrobimukhi Brand Colors
+   primary: #47a569 (green)
+   texts: #293b19 (dark green)
+   secondary: #A1BC98 (light green)
+   background: #F1F3E0 (cream)
+*/
+
+:root {
+  --radius: 0.625rem;
+
+  /* Brand colors */
+  --background: #F1F3E0;
+  --foreground: #293b19;
+
+  /* Card - white with brand text */
+  --card: #ffffff;
+  --card-foreground: #293b19;
+
+  /* Popover - white with brand text */
+  --popover: #ffffff;
+  --popover-foreground: #293b19;
+
+  /* Primary - main brand green */
+  --primary: #47a569;
+  --primary-foreground: #ffffff;
+
+  /* Secondary - light green */
+  --secondary: #A1BC98;
+  --secondary-foreground: #293b19;
+
+  /* Muted - softer version of secondary */
+  --muted: #e8ebdc;
+  --muted-foreground: #4a5c3a;
+
+  /* Accent - light green tint */
+  --accent: #d4e0cf;
+  --accent-foreground: #293b19;
+
+  /* Destructive - for errors/warnings */
+  --destructive: #dc2626;
+
+  /* Border and input */
+  --border: #c5cfb8;
+  --input: #c5cfb8;
+  --ring: #47a569;
+
+  /* Chart colors - green palette */
+  --chart-1: #47a569;
+  --chart-2: #A1BC98;
+  --chart-3: #6bb87f;
+  --chart-4: #3d8a58;
+  --chart-5: #2d6a42;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #293b19;
+  --sidebar-primary: #47a569;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8ebdc;
+  --sidebar-accent-foreground: #293b19;
+  --sidebar-border: #c5cfb8;
+  --sidebar-ring: #47a569;
+}
+
+.dark {
+  --background: #1a2412;
+  --foreground: #e8ebdc;
+
+  --card: #232f1a;
+  --card-foreground: #e8ebdc;
+
+  --popover: #232f1a;
+  --popover-foreground: #e8ebdc;
+
+  --primary: #47a569;
+  --primary-foreground: #ffffff;
+
+  --secondary: #3d5a35;
+  --secondary-foreground: #e8ebdc;
+
+  --muted: #2d3d24;
+  --muted-foreground: #9aab8f;
+
+  --accent: #3d5a35;
+  --accent-foreground: #e8ebdc;
+
+  --destructive: #ef4444;
+
+  --border: #3d5a35;
+  --input: #3d5a35;
+  --ring: #47a569;
+
+  --chart-1: #5cb876;
+  --chart-2: #8aab82;
+  --chart-3: #47a569;
+  --chart-4: #6bb87f;
+  --chart-5: #3d8a58;
+
+  --sidebar: #1a2412;
+  --sidebar-foreground: #e8ebdc;
+  --sidebar-primary: #47a569;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #2d3d24;
+  --sidebar-accent-foreground: #e8ebdc;
+  --sidebar-border: #3d5a35;
+  --sidebar-ring: #47a569;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
