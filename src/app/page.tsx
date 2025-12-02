@@ -12,7 +12,7 @@ export default function Home() {
       <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden">
         {/* Replace with actual hero image - for now using gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-secondary/80" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1586936893354-362ad6ae47ba?q=80')] bg-cover bg-center" />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 py-24 md:py-32 px-6 md:px-12">
           <div className="max-w-2xl">
