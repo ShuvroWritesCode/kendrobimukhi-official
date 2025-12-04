@@ -102,7 +102,7 @@ export default function BlogsClient({
       const matchesSearch =
         searchQuery === "" ||
         blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+        blog.summary?.toLowerCase().includes(searchQuery.toLowerCase());
 
       return matchesCategory && matchesSearch;
     });
@@ -168,9 +168,9 @@ export default function BlogsClient({
                 <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
                   {featuredBlog.title}
                 </h3>
-                {featuredBlog.excerpt && (
+                {featuredBlog.summary && (
                   <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {featuredBlog.excerpt}
+                    {featuredBlog.summary}
                   </p>
                 )}
                 <div className="flex items-center gap-3 mb-4">
@@ -178,7 +178,7 @@ export default function BlogsClient({
                     <div className="relative w-10 h-10 rounded-full overflow-hidden">
                       <Image
                         src={featuredBlog.author.image_url}
-                        alt={featuredBlog.author.name}
+                        alt={featuredBlog.author.fullname}
                         fill
                         className="object-cover"
                       />
@@ -186,16 +186,16 @@ export default function BlogsClient({
                   ) : (
                     <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
                       <span className="text-sm font-medium text-muted-foreground">
-                        {featuredBlog.author?.name?.charAt(0) || "A"}
+                        {featuredBlog.author?.fullname?.charAt(0) || "A"}
                       </span>
                     </div>
                   )}
                   <div>
                     <p className="text-sm font-medium text-foreground">
-                      {featuredBlog.author?.name || "Anonymous"}
+                      {featuredBlog.author?.fullname || "Anonymous"}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {formatDate(featuredBlog.published_at)}
+                      {featuredBlog.published_at ? formatDate(featuredBlog.published_at) : ""}
                     </p>
                   </div>
                 </div>
@@ -250,9 +250,9 @@ export default function BlogsClient({
                   <h3 className="font-semibold text-foreground mb-2 line-clamp-2">
                     {blog.title}
                   </h3>
-                  {blog.excerpt && (
+                  {blog.summary && (
                     <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {blog.excerpt}
+                      {blog.summary}
                     </p>
                   )}
                   <div className="flex items-center gap-3">
@@ -260,7 +260,7 @@ export default function BlogsClient({
                       <div className="relative w-8 h-8 rounded-full overflow-hidden">
                         <Image
                           src={blog.author.image_url}
-                          alt={blog.author.name}
+                          alt={blog.author.fullname}
                           fill
                           className="object-cover"
                         />
@@ -268,16 +268,16 @@ export default function BlogsClient({
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
                         <span className="text-xs font-medium text-muted-foreground">
-                          {blog.author?.name?.charAt(0) || "A"}
+                          {blog.author?.fullname?.charAt(0) || "A"}
                         </span>
                       </div>
                     )}
                     <div>
                       <p className="text-sm font-medium text-foreground">
-                        {blog.author?.name || "Anonymous"}
+                        {blog.author?.fullname || "Anonymous"}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {formatDate(blog.published_at)}
+                        {blog.published_at ? formatDate(blog.published_at) : ""}
                       </p>
                     </div>
                   </div>

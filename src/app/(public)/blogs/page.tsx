@@ -11,7 +11,7 @@ export default async function BlogsPage() {
     .select("*")
     .order("name", { ascending: true });
 
-  // Fetch featured blog
+  // Fetch featured blog (only published)
   const { data: featuredData } = await supabase
     .from("blogs")
     .select(
@@ -22,11 +22,12 @@ export default async function BlogsPage() {
     `
     )
     .eq("is_featured", true)
+    .eq("status", "published")
     .order("published_at", { ascending: false })
     .limit(1)
     .single();
 
-  // Fetch all non-featured blogs
+  // Fetch all non-featured published blogs
   const { data: blogsData } = await supabase
     .from("blogs")
     .select(
@@ -37,6 +38,7 @@ export default async function BlogsPage() {
     `
     )
     .eq("is_featured", false)
+    .eq("status", "published")
     .order("published_at", { ascending: false });
 
   const featuredBlog = featuredData as BlogWithRelations | null;
