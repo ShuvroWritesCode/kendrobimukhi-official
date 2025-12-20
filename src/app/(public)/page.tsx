@@ -11,9 +11,9 @@ export default function Home() {
       {/* Hero Section with Background Image */}
       <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden">
         {/* Replace with actual hero image - for now using gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-secondary/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-secondary/80" />
         <div className="absolute inset-0 bg-[url('/images/CBanner.png')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 py-24 md:py-32 px-6 md:px-12">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
@@ -46,7 +46,7 @@ export default function Home() {
               Our Mission
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Driving social change through social research
+              Kendrobimukhi is a Bangladesh-based social research collective committed to situated learning, collective mentorship, and the democratization of knowledge production. We work with emerging researchers to build skills, critical judgment, and pathways into academic and public knowledge-making.
             </p>
           </div>
 
