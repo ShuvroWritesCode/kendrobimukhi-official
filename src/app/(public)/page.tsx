@@ -54,21 +54,21 @@ export default function Home() {
             {[
               {
                 icon: Globe,
-                title: "A Dynamic Network",
+                title: "Situated Research Training",
                 description:
-                  "Connect with peers who are social science enthusiast through the Kendrobimukhi Network",
+                  "Hands-on training in social research grounded in local realities, ethical reflexivity, and critical theory.",
               },
               {
                 icon: Users,
-                title: "Opportunities for Growth",
+                title: "Collective Learning & Mentorship",
                 description:
-                  "Participate in academic discussions, events, and research initiatives",
+                  "Learning through peer mentorship, collaboration, and shared intellectual labor across experience levels.",
               },
               {
                 icon: Lightbulb,
-                title: "Inspiration for Change",
+                title: "Pathways for Researcher Formation",
                 description:
-                  "Collaborate on solutions for contemporary societal challenges",
+                  "Supporting emerging researchers in building skills, confidence, and direction for academic and public-facing work.",
               },
             ].map((item) => (
               <Card key={item.title} className="border border-border/50">
