@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { BookOpen, Users, Globe } from "lucide-react";
+import { BookOpen, Users, Globe, Wifi, Lightbulb } from "lucide-react";
 
 export default function Home() {
   return (
@@ -12,18 +12,15 @@ export default function Home() {
       <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden">
         {/* Replace with actual hero image - for now using gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-secondary/80" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1586936893354-362ad6ae47ba?q=80')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[url('/images/CBanner.png')] bg-cover bg-center" />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 py-24 md:py-32 px-6 md:px-12">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Driving Social Change through
               <br />
-              Social Research.
+              Social Research
             </h1>
-            <p className="text-lg text-white/90 mb-8 max-w-xl">
-              Join us in our mission to create a ...
-            </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                 <a href="https://www.facebook.com/kendrobimukhi" target="_blank" rel="noopener noreferrer">Get Involved</a>
@@ -49,31 +46,29 @@ export default function Home() {
               Our Mission
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              We are dedicated to fostering a deeper connection between communities and the natural world.
-              Through education, conservation efforts, and collaborative projects, we strive to protect our
-              planet&apos;s precious ecosystems for future generations.
+              Driving social change through social research
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                icon: BookOpen,
-                title: "Environmental Education",
+                icon: Globe,
+                title: "A Dynamic Network",
                 description:
-                  "Providing accessible learning resources to inspire the next generation of environmental stewards.",
+                  "Connect with peers who are social science enthusiast through the Kendrobimukhi Network",
               },
               {
                 icon: Users,
-                title: "Community Action",
+                title: "Opportunities for Growth",
                 description:
-                  "Organizing local events and volunteer opportunities to make a tangible impact.",
+                  "Participate in academic discussions, events, and research initiatives",
               },
               {
-                icon: Globe,
-                title: "Conservation Projects",
+                icon: Lightbulb,
+                title: "Inspiration for Change",
                 description:
-                  "Leading initiatives to restore habitats, protect wildlife, and promote biodiversity.",
+                  "Collaborate on solutions for contemporary societal challenges",
               },
             ].map((item) => (
               <Card key={item.title} className="border border-border/50">
