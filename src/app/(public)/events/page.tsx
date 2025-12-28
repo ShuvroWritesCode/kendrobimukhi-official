@@ -44,7 +44,7 @@ export default async function EventsPage() {
               Our Events
             </h1>
             <p className="text-muted-foreground max-w-2xl leading-relaxed">
-              Connect with nature and our community through our upcoming events.
+              Connect with our community through our upcoming events.
             </p>
           </div>
 

@@ -50,13 +50,12 @@ export default async function BlogsPage() {
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
           {/* Page Header */}
-          <div className="text-center mb-10">
+          <div className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              Our Stories
+              Blogs & Articles
             </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Insights and updates from the field on nature and social awareness,
-              exploring the intersection of our planet and its people.
+            <p className="text-muted-foreground max-w-2xl leading-relaxed">
+              Get the latest blogs & articles from Kendrobimukhi.
             </p>
           </div>
 
