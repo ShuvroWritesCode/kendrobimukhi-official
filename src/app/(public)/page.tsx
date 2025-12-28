@@ -30,13 +30,21 @@ export default async function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section with Background Image */}
-      <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden md:aspect-[55.6/19] flex items-center">
-        {/* Replace with actual hero image - for now using gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-secondary/80" />
-        <div className="absolute inset-0 bg-[url('/images/CBanner.png')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="relative z-10 py-24 md:py-0 px-6 md:px-12 w-full">
-          {/* Content commented out in original file */}
+      {/* Hero Section with Background Image */}
+      <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden">
+        <div className="relative w-full">
+          <Image
+            src="/images/CBanner.png"
+            alt="Kendrobimukhi Banner"
+            width={1920}
+            height={600}
+            className="w-full h-auto object-contain"
+            priority
+            unoptimized
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-secondary/80 mix-blend-overlay opacity-30" />
+          <div className="absolute inset-0 bg-black/10" />
         </div>
       </section>
 
