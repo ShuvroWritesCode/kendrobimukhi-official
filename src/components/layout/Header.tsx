@@ -45,19 +45,19 @@ export function Header() {
             </Link>
           ))}
           <Button asChild>
-            <Link href="/donate">Donate</Link>
+            <Link href="https://forms.gle/wn4CWujSpsgpVQ8V9" target="_blank" rel="noopener noreferrer">Contribute</Link>
           </Button>
         </nav>
 
         {/* Mobile Navigation */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="md:hidden" aria-controls="mobile-nav-content">
             <Button variant="ghost" size="icon">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[280px] p-0">
+          <SheetContent side="right" className="w-[280px] p-0" id="mobile-nav-content">
             <div className="flex flex-col h-full">
               {/* Header with logo */}
               <div className="flex items-center gap-3 p-6 border-b">
@@ -87,11 +87,10 @@ export function Header() {
                 ))}
               </nav>
 
-              {/* Donate Button */}
               <div className="p-6 border-t">
                 <Button asChild className="w-full">
-                  <Link href="/donate" onClick={() => setIsOpen(false)}>
-                    Donate
+                  <Link href="https://forms.gle/wn4CWujSpsgpVQ8V9" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}>
+                    Contribute
                   </Link>
                 </Button>
               </div>

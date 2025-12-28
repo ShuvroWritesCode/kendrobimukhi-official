@@ -38,8 +38,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.variable} font-sans antialiased min-h-screen flex flex-col`}
+        className={`${outfit.variable} font-sans antialiased min-h-screen flex flex-col relative !bg-transparent`}
       >
+        <div className="fixed inset-0 -z-50 bg-background" />
+        <div className="fixed inset-0 -z-40 bg-[url('/images/background-image.png')] bg-cover bg-center opacity-7 pointer-events-none" />
         {children}
       </body>
     </html>

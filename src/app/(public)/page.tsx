@@ -2,39 +2,41 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { BookOpen, Users, Globe, Wifi, Lightbulb } from "lucide-react";
+import { BookOpen, Users, Globe, Wifi, Lightbulb, Calendar } from "lucide-react";
+import { createClient } from "@/lib/supabase/server";
 
-export default function Home() {
+export const revalidate = 60; // Revalidate every minute
+
+export default async function Home() {
+  const supabase = await createClient();
+
+  // Fetch Featured Blogs
+  const { data: featuredBlogs } = await supabase
+    .from("blogs")
+    .select("id, title, summary, image_url, slug, created_at")
+    .eq("status", "published")
+    .eq("is_featured", true)
+    .order("created_at", { ascending: false })
+    .limit(3);
+
+  // Fetch Upcoming Events
+  const { data: upcomingEvents } = await supabase
+    .from("events")
+    .select("id, title, location, event_date, image_url")
+    .gte("event_date", new Date().toISOString())
+    .order("event_date", { ascending: true })
+    .limit(3);
+
   return (
     <div className="flex flex-col">
       {/* Hero Section with Background Image */}
-      <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden">
+      <section className="relative mx-4 md:mx-8 mt-4 rounded-2xl overflow-hidden md:aspect-[55.6/19] flex items-center">
         {/* Replace with actual hero image - for now using gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary/40 to-secondary/80" />
         <div className="absolute inset-0 bg-[url('/images/CBanner.png')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative z-10 py-24 md:py-32 px-6 md:px-12">
-          {/* <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Driving Social Change through
-              <br />
-              Social Research
-            </h1>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
-                <a href="https://www.facebook.com/kendrobimukhi" target="_blank" rel="noopener noreferrer">Get Involved</a>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="bg-white text-foreground hover:bg-white/90 border-white"
-                asChild
-              >
-                <Link href="/about">Learn More</Link>
-              </Button>
-            </div>
-          </div> */}
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="relative z-10 py-24 md:py-0 px-6 md:px-12 w-full">
+          {/* Content commented out in original file */}
         </div>
       </section>
 
@@ -45,7 +47,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Our Mission
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Kendrobimukhi is a Bangladesh-based social research collective committed to situated learning, collective mentorship, and the democratization of knowledge production. We work with emerging researchers to build skills, critical judgment, and pathways into academic and public knowledge-making.
             </p>
           </div>
@@ -94,54 +96,44 @@ export default function Home() {
             Recent News & Blogs
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                image: "https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?w=400&q=80",
-                title: "A Look Back at Our Annual River Cleanup",
-                description:
-                  "See the incredible impact our volunteers made this year, removing over 2 tons of waste from local waterways.",
-                href: "/blogs/river-cleanup",
-              },
-              {
-                image: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&q=80",
-                title: "The Importance of Native Plant Species",
-                description:
-                  "Learn why planting native species is crucial for supporting local wildlife and creating a healthy ecosystem.",
-                href: "/blogs/native-plants",
-              },
-              {
-                image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&q=80",
-                title: "Community Spotlight: The Green Team",
-                description:
-                  "Meet the dedicated group of local high school students who are leading change in their community.",
-                href: "/blogs/green-team",
-              },
-            ].map((blog) => (
-              <div key={blog.title} className="group">
-                <div className="relative h-48 mb-4 rounded-lg overflow-hidden bg-secondary">
-                  <Image
-                    src={blog.image}
-                    alt={blog.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+          {!featuredBlogs || featuredBlogs.length === 0 ? (
+            <div className="text-center py-12 border border-dashed rounded-lg">
+              <p className="text-muted-foreground">No featured article at this moment</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6">
+              {featuredBlogs.map((blog) => (
+                <div key={blog.id} className="group">
+                  <div className="relative h-48 mb-4 rounded-lg overflow-hidden bg-secondary">
+                    {blog.image_url ? (
+                      <Image
+                        src={blog.image_url}
+                        alt={blog.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
+                        <BookOpen className="h-10 w-10" />
+                      </div>
+                    )}
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {blog.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-3 leading-relaxed line-clamp-3">
+                    {blog.summary}
+                  </p>
+                  <Link
+                    href={`/blogs/${blog.slug || blog.id}`}
+                    className="text-primary text-sm font-medium hover:underline"
+                  >
+                    Read More
+                  </Link>
                 </div>
-                <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {blog.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
-                  {blog.description}
-                </p>
-                <Link
-                  href={blog.href}
-                  className="text-primary text-sm font-medium hover:underline"
-                >
-                  Read More
-                </Link>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -152,57 +144,51 @@ export default function Home() {
             Upcoming Events
           </h2>
 
-          <div className="space-y-4">
-            {[
-              {
-                month: "MAY",
-                day: "25",
-                title: "Community Tree Planting Day",
-                location: "Riverside Park, 9:00 AM-1:00 PM",
-                buttonText: "View Details",
-                buttonVariant: "outline" as const,
-              },
-              {
-                month: "JUN",
-                day: "12",
-                title: "Workshop: Sustainable Gardening",
-                location: "Online Webinar, 7:00 PM",
-                buttonText: "Register",
-                buttonVariant: "default" as const,
-              },
-            ].map((event) => (
-              <div
-                key={event.title}
-                className="flex items-center justify-between p-4 bg-card rounded-lg border border-border/50"
-              >
-                <div className="flex items-center gap-6">
-                  <div className="text-center min-w-[60px]">
-                    <div className="text-sm text-primary font-medium">
-                      {event.month}
+          {!upcomingEvents || upcomingEvents.length === 0 ? (
+            <div className="text-center py-12 border border-dashed rounded-lg">
+              <p className="text-muted-foreground">No upcoming events scheduled</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {upcomingEvents.map((event) => {
+                const date = new Date(event.event_date);
+                const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
+                const day = date.getDate();
+                const time = date.toLocaleString('default', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+                return (
+                  <div
+                    key={event.id}
+                    className="flex items-center justify-between p-4 bg-card rounded-lg border border-border/50 hover:border-border transition-colors"
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className="text-center min-w-[60px]">
+                        <div className="text-sm text-primary font-medium">
+                          {month}
+                        </div>
+                        <div className="text-3xl font-bold text-primary">
+                          {day}
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground line-clamp-1">
+                          {event.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground line-clamp-1">
+                          {event.location} • {time}
+                        </p>
+                      </div>
                     </div>
-                    <div className="text-3xl font-bold text-primary">
-                      {event.day}
-                    </div>
+                    <Button variant="outline" asChild className="shrink-0 ml-4">
+                      <Link href={`/events/${event.id}`}>View Details</Link>
+                    </Button>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">
-                      {event.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {event.location}
-                    </p>
-                  </div>
-                </div>
-                <Button variant={event.buttonVariant} asChild>
-                  <Link href="/events">{event.buttonText}</Link>
-                </Button>
-              </div>
-            ))}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
-
-      {/* Footer is handled in layout, but we need to update it */}
     </div>
   );
 }
