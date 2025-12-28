@@ -21,7 +21,7 @@ export default function Home() {
               <br />
               Social Research
             </h1> */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                 <a href="https://www.facebook.com/kendrobimukhi" target="_blank" rel="noopener noreferrer">Get Involved</a>
               </Button>
@@ -33,7 +33,7 @@ export default function Home() {
               >
                 <Link href="/about">Learn More</Link>
               </Button>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
