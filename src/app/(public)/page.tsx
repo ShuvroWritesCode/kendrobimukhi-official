@@ -16,11 +16,11 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 py-24 md:py-32 px-6 md:px-12">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            {/* <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Driving Social Change through
               <br />
               Social Research
-            </h1>
+            </h1> */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-primary hover:bg-primary/90" asChild>
                 <a href="https://www.facebook.com/kendrobimukhi" target="_blank" rel="noopener noreferrer">Get Involved</a>
