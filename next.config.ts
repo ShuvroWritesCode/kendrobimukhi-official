@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "web.facebook.com",
+      },
+      {
+        protocol: "https",
         hostname: "*.fbcdn.net",
       },
       {

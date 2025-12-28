@@ -149,6 +149,7 @@ export default function BlogsClient({
                     alt={featuredBlog.title}
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 ) : (
                   <div className="w-full h-full bg-muted flex items-center justify-center">
@@ -181,6 +182,7 @@ export default function BlogsClient({
                         alt={featuredBlog.author.fullname}
                         fill
                         className="object-cover"
+                        unoptimized
                       />
                     </div>
                   ) : (
@@ -231,6 +233,7 @@ export default function BlogsClient({
                       alt={blog.title}
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center">
@@ -263,6 +266,7 @@ export default function BlogsClient({
                           alt={blog.author.fullname}
                           fill
                           className="object-cover"
+                          unoptimized
                         />
                       </div>
                     ) : (
